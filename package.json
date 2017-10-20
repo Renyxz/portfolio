@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/es6-promise": "0.0.33",
+    "api-ai-javascript": "^2.0.0-beta.14",
+    "firebase": "^4.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -16,5 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "api-ai-javascript": "^2.0.0-beta.21"
   }
 }
