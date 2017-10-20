@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import testReducer from './reducer_test'
+import messageReducer from './reducer_message';
 
 const rootReducer = combineReducers({
-	data: testReducer
+	message: messageReducer
 });
 
 export default rootReducer;

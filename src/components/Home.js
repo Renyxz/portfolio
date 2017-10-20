@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import Chatlog from '../containers/Chatlog';
+import ChatInput from '../containers/ChatInput';
 
 class Home extends Component {
 	render() {
@@ -14,19 +15,8 @@ class Home extends Component {
 		          </div>  
 
 		          <div className="chat-container">
-		            <div className="chat-box">
-		              Will Render chat msgs...
-		            </div>
-
-		            <div className="message-field">
-		              <form className="form-group">
-		                <input className="form-control" placeholder="Say something to me ..."/>
-		                <button className="btn btn-primary">
-		                  Send
-		                  <i className="fa fa-send ml-2"></i>
-		                </button>
-		              </form>
-		            </div>
+		            <Chatlog />
+		            <ChatInput />
 		          </div>
 
 		        </div>
