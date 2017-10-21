@@ -1,2 +1,105 @@
 @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import 'https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900';
+
+/*
+Theme color: #311B92, #7C4DFF;
+*/
+
+
+a {
+	color: #311B92;
+	-webkit-transition: 0.2s ease-in-out;
+}
+
+a:hover {
+	color: #7C4DFF;
+	text-decoration: none;
+	-webkit-transition: 0.2s ease-in-out;
+}
+
+
+/* Header */
+.header {
+	padding: 2rem;
+}
+
+
+.nav-wrapper {
+	width: 100%;
+}
+
+.nav-wrapper img {
+	-webkit-transform: rotate(-45deg);
+}
+
+.nav-wrapper ul a {
+	margin-right: 1.5rem;
+}
+
+.social-media {
+	margin-right: 2rem;
+}
+
+.social-media i {
+	font-size: 1.5rem;
+	margin-right: 1rem;
+}
+
+
+/* Intro */
+.intro {
+	width: 100%;
+	margin-top: 2rem;
+	text-align: center;
+}
+
+.intro h5 {
+	margin-bottom: 2rem;
+	font-size: 3rem;
+	font-family: 'Nunito', sans-serif;
+}
+
+.intro p {
+	font-size: 1.2rem;
+}
+
+
+/* Chat container */
+.chat-container {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.chat-box {
+	padding: 2rem;
+	margin: 1rem 0;
+	text-align: center;
+}
+
+.message-field input {
+	font-size: 1.3rem;
+	border-radius: 0;
+	border: none;
+	border-bottom: 1px solid #BDBDBD;
+}
+
+.message-field input:focus {
+	border-bottom: 1px solid #7C4DFF;
+}
+
+.idle-msg-wrapper {
+	color: #BDBDBD;
+	font-size: 1.2rem;
+	-webkit-animation: blink 1.5s infinite linear;
+}
+@keyframes blink {
+	50% { opacity: 0; }
+}
+
+
+.msg-wrapper p {
+	font-size: 1.2rem;
+	font-family: 'Nunito', sans-serif;
+	font-weight: 700;
+}

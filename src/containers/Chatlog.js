@@ -9,13 +9,17 @@ class Chatlog extends Component {
 		
 		// If message is null
 		if(!message) {
-			return <p>I'm here...</p>;
+			return(
+					<div className="idle-msg-wrapper">
+						<p>Waiting for you to say something...</p>
+					</div>
+				);
 		}
 
 		return(
-				<div>
+				<div className="msg-wrapper">
 					<p>
-						{message}
+						" {message} "
 					</p>
 				</div>
 			);

@@ -45,15 +45,10 @@ class ChatInput extends Component {
 	render() {
 		return(
 				<div className="message-field">
-		          <form className="form-group" onSubmit={this.onSubmit}>
+		          <form className="form-group d-flex flex-row" onSubmit={this.onSubmit}>
 		            <input className="form-control" placeholder="Say something to me ..."
 		            	value={this.state.input}
 		            	onChange={this.onChange} />
-
-		            <button className="btn btn-primary" onClick={this.onSubmit}>
-		              Send
-		              <i className="fa fa-send ml-2"></i>
-		            </button>
 		          </form>
 		        </div>
 			);
