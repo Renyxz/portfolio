@@ -6,7 +6,7 @@
 Theme color: #311B92, #7C4DFF;
 */
 
-
+/* Links */
 a {
 	color: #311B92;
 	-webkit-transition: 0.2s ease-in-out;
@@ -19,18 +19,26 @@ a:hover {
 }
 
 
+/* Hide */
+.hide {
+	display: none;
+}
+
+
 /* Header */
 .header {
 	padding: 2rem;
-}
-
-
-.nav-wrapper {
 	width: 100%;
 }
 
+.nav-wrapper,
+.social-media-wrapper {
+	width: 100%;
+}
+
+
 .nav-wrapper img {
-	-webkit-transform: rotate(-45deg);
+	-webkit-transform: rotate(-35deg);
 }
 
 .nav-wrapper ul a {
@@ -91,7 +99,7 @@ a:hover {
 .idle-msg-wrapper {
 	color: #BDBDBD;
 	font-size: 1.2rem;
-	-webkit-animation: blink 1.5s infinite linear;
+	-webkit-animation: blink 1.5s infinite;
 }
 @keyframes blink {
 	50% { opacity: 0; }
@@ -102,4 +110,62 @@ a:hover {
 	font-size: 1.2rem;
 	font-family: 'Nunito', sans-serif;
 	font-weight: 700;
+}
+
+
+
+/* Footer */
+.footer {
+	padding: 1rem;
+	background: #FFF;
+	text-align: center;
+}
+
+.footer img {
+	margin-left: 1rem;
+}
+
+.footer img:hover {
+	cursor: pointer;
+}
+
+
+.fa-heart {
+	color: #EF5350;
+}
+
+
+
+
+/* Login Area */
+.login-form {
+	margin: 2% auto;
+	width: 350px;
+	padding: 2rem;
+}
+
+.login-form label,
+.login-form input,
+.login-form button {
+	margin-bottom: 1rem;
+}
+
+.login-form input:focus {
+	border-color: #7C4DFF;
+}
+
+.login-form button {
+	background: #311B92;
+	border-color: #311B92;
+}
+
+.login-form button:focus {
+	background: #7C4DFF;
+	border-color: #7C4DFF;
+	color: #FFF;
+}
+
+.login-form button:hover {
+	background: #7C4DFF;
+	border-color: #7C4DFF;
 }
