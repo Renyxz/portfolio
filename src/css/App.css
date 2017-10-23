@@ -19,6 +19,17 @@ a:hover {
 }
 
 
+/*Reset list style  */
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+
+
 /* Hide */
 .hide {
 	display: none;
@@ -27,7 +38,8 @@ a:hover {
 
 /* Header */
 .header {
-	padding: 2rem;
+	background: #FFF;
+	padding: 2rem 2rem 0;
 	width: 100%;
 }
 
@@ -36,6 +48,9 @@ a:hover {
 	width: 100%;
 }
 
+.nav-wrapper{
+	margin-left: 3rem;
+}
 
 .nav-wrapper img {
 	-webkit-transform: rotate(-35deg);
@@ -139,7 +154,7 @@ a:hover {
 
 /* Login Area */
 .login-form {
-	margin: 2% auto;
+	margin: 8% auto 0;
 	width: 350px;
 	padding: 2rem;
 }
@@ -168,4 +183,108 @@ a:hover {
 .login-form button:hover {
 	background: #7C4DFF;
 	border-color: #7C4DFF;
+}
+
+
+
+/* Dashboard, Ongoing, Past areas */
+.page-container {
+	margin: 6rem 4rem 0;
+}
+
+
+/* Dashboard */
+.dash-buttons-container {
+	margin: 0 auto;
+	width: 50%;
+	display: flex;
+}
+
+.dash-buttons-container a {
+	width: 40%;
+	margin: 25% 5% 0;
+	padding: 2rem 0;
+	border: 1px solid #311B92;
+	border-radius: 3px;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+.dash-buttons-container a:hover {
+	background: #7C4DFF;
+	color: #FFF;
+	border-color: #7C4DFF;
+} 
+
+
+
+/* Create post area */
+.create-post-form {
+	width: 100%;
+}
+
+
+.cp-form-left,
+.cp-form-right {
+	width: 48%;
+}
+
+.cp-form-left {
+	margin-right: 2%;
+}
+
+.cp-form-right {
+	margin-left: 2%;
+}
+
+
+.inputs-wrapper li {
+	margin-bottom: 1rem;
+}
+
+.tech-list-wrapper {
+	margin-top: 1rem;
+	height: 4.4rem;
+	flex-wrap: wrap;
+}
+
+.project-des-wrapper textarea {
+	height: 7.7rem;
+	resize: none;
+}
+
+.create-post-btns-wrapper {
+	margin-top: 3rem;
+}
+
+.create-post-btns-wrapper button {
+	margin-right: 1rem;
+}
+
+
+
+ /*Media query */
+@media (max-width: 1100px) {
+	
+	/* Dashboard buttons 
+	.dash-buttons-container {
+		flex-direction: column;
+	}
+
+	.dash-buttons-container a {
+		width: 100%;
+		margin: 10% 0 0;
+	}
+
+}
+
+
+
+@media (max-width: 700px) {
+
+	/* Dashboard buttons */
+	.dash-buttons-container {
+		width: 400px;
+	}
+
 }
