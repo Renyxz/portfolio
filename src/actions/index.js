@@ -51,10 +51,6 @@ export function sendMsg(userMsg) {
 	return dispatch => {
 		// Success
 	    promise.then((response) => {
-	    	// In case response is not ready yet:
-	    	if(!response) {
-	    		console.log('Thinking...');
-	    	}
 
 	    	// Fetch message from bot
 	    	const botMsg = response.result.fulfillment.speech;
@@ -72,6 +68,26 @@ export function sendMsg(userMsg) {
 	    });
 	}
 }
+
+
+
+// Firebase 
+
+// Read from database 
+export function fetchContent() {
+	return dispatch => {
+
+	}
+}
+
+
+// Write to database
+export function postContent() {
+	return dispatch => {
+		
+	}
+}
+
 
 
 
@@ -117,3 +133,5 @@ export function logout() {
 		});
 	}
 }
+
+
