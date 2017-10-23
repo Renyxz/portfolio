@@ -97,14 +97,16 @@ export function postContent(name, date, demoURL, ytURL, githubURL, techs, descri
 	}
 
 	// Write to 'content' -> 'key'
-	const newPostKey = database.ref(`${uid}`).child('content').push().key;
+	const newPostKey = database.ref().push().key;
 	
-	// Write post date to post list
+	// Write post date to post list & user post list
 	let updates = {};
-	updates[newPostKey] = postData;
+	updates[`content/${newPostKey}`] = postData;
+	updates[`${uid}/content/${newPostKey}`] = postData;
+
 
 	return dispatch => {
-		const promise = database.ref(`${uid}/content`).update(updates);
+		const promise = database.ref().update(updates);
 		
 		// Success
 		promise.then(() => {
