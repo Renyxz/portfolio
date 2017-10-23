@@ -18,7 +18,7 @@ class AdminLogin extends Component {
 
 	render() {
 		return(
-				<div className="row">
+				<div className="page-container row">
 					<form className="login-form form-group">
 						<label>Please login to post and edit content :)</label>
 						<input className="form-control" ref="email" placeholder="Email" type="email" />

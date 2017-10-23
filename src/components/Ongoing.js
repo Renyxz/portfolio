@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Ongoing extends Component {
 	render() {
 		return(
-				<div className="row">
+				<div className="page-container row">
 					This is the Ongoing page.
 				</div>
 			);

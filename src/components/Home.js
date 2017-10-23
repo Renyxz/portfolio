@@ -5,7 +5,7 @@ import ChatInput from '../containers/ChatInput';
 class Home extends Component {
 	render() {
 		return(
-				<div className="row">
+				<div className="page-container row">
 		          <div className="intro col-lg-12">
 		            <h5>Hi, this is Ren the doppelganger.</h5>
 		            <p>

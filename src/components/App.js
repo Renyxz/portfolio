@@ -6,6 +6,7 @@ import Ongoing from './Ongoing';
 import Past from './Past';
 import AdminLogin from './AdminLogin';
 import Dashboard from './Dashboard';
+import CreatePost from '../containers/CreatePost';
 import adminLogo from '../img/admin-banana.png';
 
 
@@ -30,7 +31,7 @@ class App extends Component {
       <div className="container-fluid">
         
         <div className="row">
-          <div className="header d-flex flex-row">  
+          <div className="header fixed-top d-flex flex-row">  
             <Nav />
 
             <div className="social-media-wrapper">
@@ -60,6 +61,7 @@ class App extends Component {
         <Route exact path="/past" component={Past} />
         <Route exact path="/admin-login" component={AdminLogin} />
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard/create-post" component={CreatePost} />
 
         <div className="row">
           <div className="footer fixed-bottom">
