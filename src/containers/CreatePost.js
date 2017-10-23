@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { postContent } from '../actions';
 
 
 // TODO:
@@ -16,44 +17,69 @@ class CreatePost extends Component {
 			demoURL: '',
 			ytURL: '',
 			githubURL: '',
+			description: '',
 			techs: []
 		}
 		this.addTech = this.addTech.bind(this);
 		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 
+	// Submit form data
+	onSubmit() {
+		// Fetch data from states
+		const name = this.state.name;
+		const date = this.state.date;
+		const demoURL = this.state.demoURL;
+		const ytURL = this.state.ytURL;
+		const githubURL = this.state.githubURL;
+		const techs = this.state.techs;
+		const description = this.state.description;
+
+		// submit data to postContent function
+		this.props.postContent(name, date, demoURL, ytURL, githubURL, techs, description);
+	}
+
+
+	// Set data to states
 	onChange() {
 		const name = this.refs.name.value;
 		const date = this.refs.date.value;
 		const demoURL = this.refs.demoURL.value;
 		const ytURL = this.refs.ytURL.value;
 		const githubURL = this.refs.githubURL.value;
+		const description = this.refs.description.value;
 
 		this.setState({
 			name, 
 			date,
 			demoURL,
 			ytURL,
-			githubURL
+			githubURL,
+			description
 		});
 	}
 
 
-
+	// Adds names of technologies used
 	addTech(event) {
-		// Fetch techs used input value from state
+		// Fetch techs value from input field
 		const input = event.target.value;
 
+		// Error message
 		if(event.keyCode=== 13 && input.length <= 3) {
 			alert('Please enter something more than 3 characters long.');
 		}
 
+		// Success
 		if(event.keyCode === 13 && input.length > 3) {
+			// Pushes each technology name to a state
 			this.setState({
 				techs: this.state.techs.concat(input)
 			});
 
+			// Clears input field
 			event.target.value = '';
 		}
 
@@ -93,6 +119,7 @@ class CreatePost extends Component {
 			return (<li className="mr-2" key={ name }>{ name }</li>);
 		});
 
+		// console.log();
 
 		return(
 				<div className="page-container row">
@@ -118,14 +145,16 @@ class CreatePost extends Component {
 
 								<div className="project-des-wrapper">
 									<label>Project description</label>
-									<textarea className="form-control" placeholder="What is the purpose of this project?" />
+									<textarea className="form-control" ref="description" placeholder="What is the purpose of this project?"
+										onChange={ this.onChange } />
 								</div>
 							
 
 								<div className="create-post-btns-wrapper">
 									<div className="float-right">
-										<button className="btn btn-primary" type="button">Create post</button>
-										<Link className="btn btn-danger" to="/">Cancel</Link>
+										<button className="btn btn-primary" type="button"
+											onClick={ this.onSubmit }>Create post</button>
+										<Link className="btn btn-danger" to="/dashboard">Cancel</Link>
 									</div>
 								</div>
 							</div>
@@ -143,4 +172,4 @@ function mapStateToProps({ categories }) {
 }
 
 
-export default connect(mapStateToProps)(CreatePost);
+export default connect(mapStateToProps, { postContent })(CreatePost);

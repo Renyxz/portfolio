@@ -15,6 +15,7 @@ import history from '../js/History';
   firebase.initializeApp(config);
 
 const auth = firebase.auth();
+const database = firebase.database();
 
 
 // Api.ai Initialization
@@ -82,9 +83,42 @@ export function fetchContent() {
 
 
 // Write to database
-export function postContent() {
+export function postContent(name, date, demoURL, ytURL, githubURL, techs, description) {
+	const uid = auth.currentUser.uid;
+
+	const postData = {
+		projectName: name,
+		projectDate: date,
+		demoURL: demoURL,
+		ytURL: ytURL,
+		githubURL: githubURL,
+		techs: techs,
+		description: description
+	}
+
+	// Write to 'content' -> 'key'
+	const newPostKey = database.ref(`${uid}`).child('content').push().key;
+	
+	// Write post date to post list
+	let updates = {};
+	updates[newPostKey] = postData;
+
 	return dispatch => {
+		const promise = database.ref(`${uid}/content`).update(updates);
 		
+		// Success
+		promise.then(() => {
+			alert('A new post has been created!');
+
+			// Back to dashboard
+			window.location.reload();
+			history.push('/dashboard');
+		});
+
+		// Fail
+		promise.catch((error) => {
+			console.log(error.message);
+		});
 	}
 }
 
