@@ -21,7 +21,11 @@ class ProjectList extends Component {
 		// If content is undefined / null
 		if(!content) {
 			return(
-					<div>Loading...</div>
+					<div className="loading-wrapper">
+						<div>
+							Looks like master has not posted anything yet...
+						</div>
+					</div>
 				);
 		}
 	
@@ -45,8 +49,21 @@ class ProjectList extends Component {
 				);
 		});
 		
+
+		// Change layout according to number of projects available
+		let className;
+
+		// If projects > 10
+		(content.length < 10) ? className = 'list-wrapper center' 
+		: className = 'list-wrapper';
+
+
 		// console.log(projectList);
-		return projectList;
+		return(
+				<ul className={ className }>
+					{ projectList }
+				</ul>
+			);
 	}
 
 
@@ -55,9 +72,9 @@ class ProjectList extends Component {
 	render() {
 		return(
 				<div className="page-container row">
-					<ul>
+					<div className="project-list-container">
 						{ this.renderProjectList() }
-					</ul>
+					</div>
 				</div>
 			);
 	}

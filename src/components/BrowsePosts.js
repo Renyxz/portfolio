@@ -43,7 +43,6 @@ class BrowsePosts extends Component {
 			);
 		});
 
-		console.log(post);
 
 		return(
 			<div className="project-wrapper d-flex flex-row">
@@ -54,7 +53,7 @@ class BrowsePosts extends Component {
 					</div>
 					
 					<div>
-						<h6>Story</h6>
+						<h6>About</h6>
 						<p>{ post.description }</p>
 					</div>
 

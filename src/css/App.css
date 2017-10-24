@@ -262,6 +262,33 @@ li {
 }
 
 
+
+/* Project list area */
+.project-list-container,
+.loading-wrapper {
+	width: 100%;
+}
+
+.loading-wrapper {
+	margin-top: 170px;
+	text-align: center;
+	font-size: 1.5rem;
+	font-family: 'Nunito', sans-serif;
+}
+
+.center {
+	margin: 3rem auto 0;
+	width: 50%;
+}
+
+.list-wrapper a {
+	border: 1px solid #EEE;
+	border-radius: 3px;
+	margin-bottom: 1rem;
+	padding: 2rem;
+}
+
+
 /* BrowsePosts area */
 .project-nav-wrapper {
 	width: 100%;
@@ -270,7 +297,7 @@ li {
 
 .project-wrapper {
 	width: 100%;
-	margin-top: 2rem;
+	margin-top: 1rem;
 }
 
 .project-detail-wrapper,
@@ -280,11 +307,13 @@ li {
 
 
 .project-detail-wrapper {
-	padding: 0 1rem;
+	padding-right: 2rem;
 }
 
 .project-detail-wrapper div {
-	margin-bottom: 2rem;
+	border-top: 1px solid #EEE;
+	padding: 1rem 0;
+	margin-bottom: 1rem;
 }
 
 .project-links-wrapper {

@@ -100,6 +100,12 @@ export function fetchContent(category) {
 		promise.then((snapshot) => {
 			const data = snapshot.val();
 			
+			// If no data is available
+			if(!data) {
+				return null;
+			}
+
+
 			// Filter data for Ongoing posts
 			const list = Object.keys(data).map((project) => {
 				const post = data[project];
@@ -124,7 +130,7 @@ export function fetchContent(category) {
 				content.push(list[i]);
 			}
 
-			console.log(content);
+			// console.log(content);
 
 			dispatch(fetchContentAction(content));
 
