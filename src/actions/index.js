@@ -108,11 +108,12 @@ export function fetchContent(category) {
 
 				(date === 'ongoing') ? ongoing = post : past = post;
 
-				return (category === 'ongoing') ? ongoing : past;
+				return (category === '/ongoing') ? ongoing : past;
 				// const variable = (date === 'ongoing') ? `Ongoing: ${post}` : `Past: ${post}`;
 				// console.log(variable);
 			});
 
+			// console.log(list);
 
 			// Create a new array of objects without undefined projects
 			let content = [];
@@ -122,6 +123,8 @@ export function fetchContent(category) {
 				}
 				content.push(list[i]);
 			}
+
+			console.log(content);
 
 			dispatch(fetchContentAction(content));
 

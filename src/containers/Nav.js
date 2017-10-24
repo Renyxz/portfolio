@@ -23,11 +23,11 @@ class Nav extends Component {
 			              	<img src={logo} alt="Home" width="60" />
 			            </Link>
 			                
-			            <Link to="/ongoing" onClick={ () => this.props.fetchContent('ongoing') }>
+			            <Link to="/ongoing" onClick={ () => this.props.fetchContent('/ongoing') }>
 			            	Ongoing projects
 			            </Link>
 			                
-			            <Link to="/past" onClick={ () => this.props.fetchContent('past') }>
+			            <Link to="/past" onClick={ () => this.props.fetchContent('/past') }>
 			            	Past projects
 			            </Link>
 

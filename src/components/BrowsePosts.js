@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { fetchContent } from '../actions';
 
 
-// TODO: 
-// Refactor components - Combine Past and Ongoing pages since they share the same layout.
-// Use action creators and reducers to load between Past and Ongoing when links are clicked.
-
 
 class BrowsePosts extends Component {
 	constructor(props) {
@@ -26,7 +22,7 @@ class BrowsePosts extends Component {
 
 		// Fetch corresponding content 
 		// by inserting current route pathname
-		this.props.fetchContent(params.pathName);
+		this.props.fetchContent(`/${ params.pathName }`);
 	}
 
 

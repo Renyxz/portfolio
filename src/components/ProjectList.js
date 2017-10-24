@@ -9,6 +9,8 @@ class ProjectList extends Component {
 	componentDidMount() {
 		const pathName = this.props.history.location.pathname;
 		this.props.fetchContent(pathName);
+
+		console.log(pathName);
 	}
 
 
