@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { postContent } from '../actions';
 
 
-// TODO:
-// Add function for writing data into firebase database
 
 class CreatePost extends Component {
 	constructor(props) {

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import Nav from '../containers/Nav';
 import Home from './Home';
-import Ongoing from './Ongoing';
-import Past from './Past';
+import ProjectList from './ProjectList';
+import BrowsePosts from './BrowsePosts';
 import AdminLogin from './AdminLogin';
 import Dashboard from './Dashboard';
 import CreatePost from '../containers/CreatePost';
@@ -57,8 +57,9 @@ class App extends Component {
         </div>
 
         <Route exact path="/" component={Home} />
-        <Route exact path="/ongoing" component={Ongoing} />
-        <Route exact path="/past" component={Past} />
+        <Route exact path="/ongoing" component={ProjectList} />
+        <Route exact path="/past" component={ProjectList} />
+        <Route exact path="/:pathName/:id" component={BrowsePosts} />
         <Route exact path="/admin-login" component={AdminLogin} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/dashboard/create-post" component={CreatePost} />

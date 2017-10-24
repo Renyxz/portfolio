@@ -22,7 +22,7 @@ const database = firebase.database();
 const ACCESS_TOKEN = '74eb689aa6d4443d86288a088163e6bd';
 const client = new ApiAiClient({accessToken: ACCESS_TOKEN});
 
-// Payload constables
+// Api.ai payload constables
 export const USER_MSG = 'user_msg';
 export const BOT_MSG = 'bot_msg';
 
@@ -74,12 +74,62 @@ export function sendMsg(userMsg) {
 
 // Firebase 
 
-// Read from database 
-export function fetchContent() {
-	return dispatch => {
+// Firebase payload constables
+export const FETCH_CONTENT = 'fetch_content';
 
+// Read from database 
+
+// Action - projects
+export function fetchContentAction(content) {
+	return {
+		type: FETCH_CONTENT,
+		payload: content
 	}
 }
+
+
+
+// Dispatch data from firebase database
+
+// Content
+export function fetchContent(category) {
+	// Fetch data
+	const promise = database.ref('content').once('value');
+	
+	return dispatch => {
+		promise.then((snapshot) => {
+			const data = snapshot.val();
+			
+			// Filter data for Ongoing posts
+			const list = Object.keys(data).map((project) => {
+				const post = data[project];
+				const date = post.projectDate;
+				let ongoing, past;
+
+				(date === 'ongoing') ? ongoing = post : past = post;
+
+				return (category === 'ongoing') ? ongoing : past;
+				// const variable = (date === 'ongoing') ? `Ongoing: ${post}` : `Past: ${post}`;
+				// console.log(variable);
+			});
+
+
+			// Create a new array of objects without undefined projects
+			let content = [];
+			for(let i = 0; i < list.length; i++) {
+				if(list[i] === undefined) {
+					continue;
+				}
+				content.push(list[i]);
+			}
+
+			dispatch(fetchContentAction(content));
+
+		});
+	}
+}
+
+
 
 
 // Write to database
