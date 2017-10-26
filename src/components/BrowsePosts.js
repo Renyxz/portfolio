@@ -37,9 +37,18 @@ class BrowsePosts extends Component {
 		}
 		
 		const post = content[index];
-		const techsList = post.techs.map((name) => {
+
+		if(!post) {
+			return null;
+		}
+
+
+		const techs = post.techs;
+
+		const techsList = (!techs) ? 'None' 
+		: techs.map((name) => {
 			return(
-				<li key={ name }>{ name }</li>
+				<li className="mr-3" key={ name }>{ name }</li>
 			);
 		});
 
@@ -135,11 +144,11 @@ class BrowsePosts extends Component {
 		return(
 				<div className="page-container row">
 					<div className="project-nav-wrapper">
-						<a href={ index } onClick={ () => this.prev() }>
+						<a href={`${index}`} onClick={ () => this.prev() }>
 							<i className="fa fa-arrow-left"></i> Previous
 						</a>
 
-						<a className="float-right" href={ index } onClick={ () => this.next() }>
+						<a className="float-right" href={`${index}`} onClick={ () => this.next() }>
 							Next <i className="fa fa-arrow-right"></i>
 						</a>
 					</div>

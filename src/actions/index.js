@@ -114,7 +114,9 @@ export function fetchContent(category) {
 
 				(date === 'ongoing') ? ongoing = post : past = post;
 
-				return (category === '/ongoing') ? ongoing : past;
+				return (category === '/ongoing') ? ongoing 
+				: (category === '/past') ? past
+				: post;
 				// const variable = (date === 'ongoing') ? `Ongoing: ${post}` : `Past: ${post}`;
 				// console.log(variable);
 			});
@@ -142,35 +144,39 @@ export function fetchContent(category) {
 
 
 // Write to database
-export function postContent(name, date, demoURL, ytURL, githubURL, techs, description) {
+export function postContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description) {
 	const uid = auth.currentUser.uid;
-
-	const postData = {
-		projectName: name,
-		projectDate: date,
-		demoURL: demoURL,
-		ytURL: ytURL,
-		githubURL: githubURL,
-		techs: techs,
-		description: description
-	}
 
 	// Write to 'content' -> 'key'
 	const newPostKey = database.ref().push().key;
+
+	// Post data
+	const postData = {
+			projectName,
+			projectDate,
+			projectId: newPostKey,
+			demoURL,
+			ytURL,
+			githubURL,
+			techs,
+			description
+		};
+
+
 	
 	// Write post date to post list & user post list
 	let updates = {};
-	updates[`content/${newPostKey}`] = postData;
-	updates[`${uid}/content/${newPostKey}`] = postData;
+
+		updates[`content/${newPostKey}`] = postData;
+		updates[`${uid}/content/${newPostKey}`] = postData;
 
 
 	return dispatch => {
+
 		const promise = database.ref().update(updates);
 		
 		// Success
 		promise.then(() => {
-			alert('A new post has been created!');
-
 			// Back to dashboard
 			window.location.reload();
 			history.push('/dashboard');
@@ -183,6 +189,63 @@ export function postContent(name, date, demoURL, ytURL, githubURL, techs, descri
 	}
 }
 
+
+
+// Update content
+export function updateContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description, projectId) {
+	const uid = auth.currentUser.uid;
+	const promiseUser = database.ref(`${uid}/content/${projectId}`);
+	const promisePublic = database.ref(`content/${projectId}`);
+
+	return dispatch => {
+		const array = ['projectName', 'projectDate', 'demoURL', 'ytURL', 'githubURL', 'techs', 'description'];
+		let postData = {};
+
+		for(let i = 0; i < array.length; i++) {
+			if(arguments[i] !== '' || arguments[i].length > 0) {
+				postData[ array[i] ] = arguments[i];
+			}
+		}
+
+		promiseUser.update(postData).then(() => {
+			window.location.reload();
+			history.push('/dashboard/posts');
+		});
+
+		promisePublic.update(postData);
+		
+		// console.log(postData);
+	}
+}
+
+
+
+// Delete content
+export function deletePost(projectId) {
+	const uid = auth.currentUser.uid;
+
+	// Remove post from database 
+	// User
+	const promiseUser = database.ref(`${uid}/content`).child(`${projectId}`).remove();
+	
+	// Public 
+	database.ref(`content`).child(`${projectId}`).remove();
+	
+	return dispatch => {
+		// Successful removal
+		promiseUser.then(() => {
+			alert('Post has been deleted!');
+
+			window.location.reload();
+		});
+
+		// Failed removal
+		promiseUser.catch((error) => {
+			console.log(error.message);
+		});
+	}
+
+}
 
 
 

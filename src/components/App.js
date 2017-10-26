@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Nav from '../containers/Nav';
 import Home from './Home';
 import ProjectList from './ProjectList';
@@ -55,14 +55,20 @@ class App extends Component {
             </div>       
           </div>
         </div>
+        
 
-        <Route exact path="/" component={Home} />
-        <Route exact path="/ongoing" component={ProjectList} />
-        <Route exact path="/past" component={ProjectList} />
-        <Route exact path="/:pathName/:id" component={BrowsePosts} />
-        <Route exact path="/admin-login" component={AdminLogin} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/dashboard/create-post" component={CreatePost} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/admin-login" component={AdminLogin} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/dashboard/create-post" component={CreatePost} />
+          <Route exact path="/dashboard/posts" component={ProjectList} />
+          <Route exact path="/dashboard/edit-post/:projectId" component={CreatePost} />
+          <Route exact path="/ongoing" component={ProjectList} />
+          <Route exact path="/past" component={ProjectList} />
+          <Route exact path="/:pathName/:id" component={BrowsePosts} />
+        </Switch>
+        
 
         <div className="row">
           <div className="footer fixed-bottom">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postContent } from '../actions';
+import { updateContent, postContent } from '../actions';
 
 
 
@@ -21,22 +21,42 @@ class CreatePost extends Component {
 		this.addTech = this.addTech.bind(this);
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+
+	}
+
+
+
+	componentDidMount() {
+		const pathName = this.props.history.location.pathname;
+		const projectId = this.props.match.params.projectId;
+
+		console.log(pathName, projectId);
 	}
 
 
 	// Submit form data
 	onSubmit() {
+		const pathName = this.props.history.location.pathname;
+		const projectId = this.props.match.params.projectId;
+
 		// Fetch data from states
-		const name = this.state.name;
-		const date = this.state.date;
+		const projectName = this.state.name;
+		const projectDate = this.state.date;
 		const demoURL = this.state.demoURL;
 		const ytURL = this.state.ytURL;
 		const githubURL = this.state.githubURL;
 		const techs = this.state.techs;
 		const description = this.state.description;
 
-		// submit data to postContent function
-		this.props.postContent(name, date, demoURL, ytURL, githubURL, techs, description);
+		// submit data to firebase database
+		if (pathName === '/dashboard/create-post') {
+			this.props.postContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description);
+
+		} else {
+			this.props.updateContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description, projectId);
+			console.log(projectName);
+		}
+
 	}
 
 
@@ -71,7 +91,7 @@ class CreatePost extends Component {
 		}
 
 		// Success
-		if(event.keyCode === 13 && input.length > 3) {
+		if(event.keyCode === 13 && input.length > 3 && this.state.techs.length < 5) {
 			// Pushes each technology name to a state
 			this.setState({
 				techs: this.state.techs.concat(input)
@@ -81,6 +101,12 @@ class CreatePost extends Component {
 			event.target.value = '';
 		}
 
+		if(this.state.techs.length === 5 && event.keyCode === 13) {
+			alert('Stop hoarding technologies into your post...');
+			event.target.value = '';
+			return null;
+		}
+
 	}
 
 
@@ -88,6 +114,7 @@ class CreatePost extends Component {
 	renderInputFields() {
 
 		const data = this.props.categories.inputs;
+
 
 		const inputList = Object.keys(data).map((list, id) => {
 			const label = data[list].label;
@@ -114,7 +141,7 @@ class CreatePost extends Component {
 
 		const techList = (!list) ? null 
 		: list.map((name) => {
-			return (<li className="mr-2" key={ name }>{ name }</li>);
+			return (<small className="mr-2" key={ name }>{ name }</small>);
 		});
 
 		// console.log();
@@ -135,9 +162,11 @@ class CreatePost extends Component {
 									<label>Technologies used</label>
 										<input className="form-control" placeholder="Hit enter to add technologies used."
 											onKeyDown={ this.addTech } />
-										<ul className="tech-list-wrapper d-flex flex-row">
-											{ techList }
-										</ul>
+										<div className="tech-list-wrapper">
+											<ul className="d-flex flex-row">
+												{ techList }
+											</ul>
+										</div>
 									
 								</div>
 
@@ -170,4 +199,4 @@ function mapStateToProps({ categories }) {
 }
 
 
-export default connect(mapStateToProps, { postContent })(CreatePost);
+export default connect(mapStateToProps, { updateContent, postContent })(CreatePost);

@@ -244,8 +244,18 @@ li {
 
 .tech-list-wrapper {
 	margin-top: 1rem;
-	height: 4.4rem;
+	height: 5.4rem;
+}
+
+.tech-list-wrapper ul {
 	flex-wrap: wrap;
+}
+
+.tech-list-wrapper ul small {
+	background: #EEE;
+	padding: 0.3rem 0.8rem;
+	margin-bottom: 0.5rem;
+	color: #9E9E9E;
 }
 
 .project-des-wrapper textarea {
@@ -281,12 +291,25 @@ li {
 	width: 50%;
 }
 
-.list-wrapper a {
+
+.list-wrapper li {
+	width: 100%;
 	border: 1px solid #EEE;
 	border-radius: 3px;
 	margin-bottom: 1rem;
 	padding: 2rem;
 }
+
+.post-edit-wrapper {
+	float: right;
+}
+
+.post-edit-wrapper i {
+	font-size: 1.2rem;
+	margin-left: 1rem;
+}
+
+
 
 
 /* BrowsePosts area */
@@ -311,9 +334,7 @@ li {
 }
 
 .project-detail-wrapper div {
-	border-top: 1px solid #EEE;
 	padding: 1rem 0;
-	margin-bottom: 1rem;
 }
 
 .project-links-wrapper {
