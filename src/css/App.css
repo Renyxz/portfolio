@@ -431,7 +431,7 @@ li {
 	    left: 0;
 	    top: 0;
 	    background: rgba(0,0,0, 0.95); 
-	    overflow-x: hidden; 
+	    overflow: hidden; 
 	    transition: 0.5s ease-in-out; 
 	}
 
@@ -511,6 +511,13 @@ li {
 		width: 100%;
 		margin-bottom: 2rem;
 	}
+
+
+	/* ProjectList */
+	.center {
+		width: 500px;
+	}
+
 }
 
 
@@ -565,4 +572,31 @@ li {
 	.page-container {
 		margin: 6rem 1rem 0;
 	}
+
+	/* ProjectList */
+	.center {
+		width: 400px;
+	}
+
 }
+
+
+@media (max-width: 500px) {
+
+	/* ProjectList */
+	.center {
+		width: 350px;
+	}
+
+}
+
+
+@media (max-width: 400px) {
+
+	/* ProjectList */
+	.center {
+		width: 100%;
+	}
+
+}
+
