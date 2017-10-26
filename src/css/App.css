@@ -18,6 +18,10 @@ a:hover {
 	-webkit-transition: 0.2s ease-in-out;
 }
 
+button {
+	-webkit-transition: 0.2s ease-in-out;
+}
+
 
 /*Reset list style  */
 ul {
@@ -269,6 +273,22 @@ li {
 
 .create-post-btns-wrapper button {
 	margin-right: 1rem;
+	padding: 0.4rem 1rem;
+	background: none;
+	border: 1px solid #311B92;
+	border-radius: 3px;
+	color: #311B92;
+}
+
+.create-post-btns-wrapper button:hover {
+	background: #7C4DFF;
+	color: #FFF;
+	border-color: #7C4DFF;
+	cursor: pointer;
+}
+
+.cancel-btn {
+	padding: 0.4rem 1rem;
 }
 
 

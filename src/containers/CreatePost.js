@@ -5,6 +5,7 @@ import { updateContent, postContent } from '../actions';
 
 
 
+// For both creating & updating post
 class CreatePost extends Component {
 	constructor(props) {
 		super(props);
@@ -16,7 +17,9 @@ class CreatePost extends Component {
 			ytURL: '',
 			githubURL: '',
 			description: '',
-			techs: []
+			techs: [],
+			pathName: '',
+			projectId: ''
 		}
 		this.addTech = this.addTech.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -30,14 +33,19 @@ class CreatePost extends Component {
 		const pathName = this.props.history.location.pathname;
 		const projectId = this.props.match.params.projectId;
 
+		this.setState({
+			pathName,
+			projectId
+		});
+
 		console.log(pathName, projectId);
 	}
 
 
 	// Submit form data
 	onSubmit() {
-		const pathName = this.props.history.location.pathname;
-		const projectId = this.props.match.params.projectId;
+		const pathName = this.state.pathName;
+		const projectId = this.state.projectId;
 
 		// Fetch data from states
 		const projectName = this.state.name;
@@ -50,11 +58,13 @@ class CreatePost extends Component {
 
 		// submit data to firebase database
 		if (pathName === '/dashboard/create-post') {
+			// Create new post
 			this.props.postContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description);
 
 		} else {
+			// Update selected post
 			this.props.updateContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description, projectId);
-			console.log(projectName);
+			// console.log(projectName);
 		}
 
 	}
@@ -137,6 +147,10 @@ class CreatePost extends Component {
 
 
 	render() {
+		const pathName = this.state.pathName;
+		const createPostBtn = (pathName === '/dashboard/create-post') ? '' : 'hide';
+		const updatePostBtn = (pathName === '/dashboard/create-post') ? 'hide' : '';
+
 		const list = this.state.techs;
 
 		const techList = (!list) ? null 
@@ -179,9 +193,13 @@ class CreatePost extends Component {
 
 								<div className="create-post-btns-wrapper">
 									<div className="float-right">
-										<button className="btn btn-primary" type="button"
+										<button className={ createPostBtn } type="button"
 											onClick={ this.onSubmit }>Create post</button>
-										<Link className="btn btn-danger" to="/dashboard">Cancel</Link>
+
+										<button className={ updatePostBtn } type="button"
+											onClick={ this.onSubmit }>Update post</button>
+										
+										<Link className="cancel-btn" to="/dashboard">Cancel</Link>
 									</div>
 								</div>
 							</div>
