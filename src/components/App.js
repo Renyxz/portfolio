@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {
     const user = window.localStorage.getItem('user');
-    const adminBtn = (!user) ? '' : 'hide';
+    const adminBtn = (!user) ? 'admin-btn' : 'hide';
 
     return (
       <div className="container-fluid">

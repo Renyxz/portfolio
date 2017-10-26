@@ -622,6 +622,22 @@ li {
 		width: 350px;
 	}
 
+
+}
+
+
+@media (max-width: 450px) {
+
+	/* Footer */
+	.footer small {
+		font-size: 0.5rem;
+	}
+
+	/* Footer */
+	.admin-btn {
+		display: none;
+	}
+
 }
 
 
@@ -632,5 +648,22 @@ li {
 		width: 100%;
 	}
 
+
 }
+
+@media (max-height: 250px) {
+	.page-container {
+		padding-bottom: 5rem;
+	}
+
+}
+
+@media screen and (orientation: landscape) {
+	.page-container {
+		padding-bottom: 5rem;
+	}
+
+}
+
+
 

@@ -42,6 +42,7 @@ class ChatInput extends Component {
 	}
 
 
+
 	render() {
 		return(
 				<div className="message-field">
