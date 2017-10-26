@@ -497,6 +497,24 @@ li {
 }
 
 
+
+@media (max-width: 800px) {
+
+	/* BrowsePost */
+	.project-wrapper {
+		flex-direction: column !important;
+		margin-bottom: 7rem;
+	}
+
+	.project-detail-wrapper,
+	.project-video-wrapper {
+		width: 100%;
+		margin-bottom: 2rem;
+	}
+}
+
+
+
 @media (max-width: 700px) {
 
 	/* Intro */
