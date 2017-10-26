@@ -5,11 +5,34 @@ import { adminLogin } from '../actions';
 
 
 class AdminLogin extends Component {
+	constructor(props) {
+		super(props);
 
-	// Handle email login
-	handleLogin() {
+		this.state = {
+			email: '',
+			password: ''
+		}
+		this.onChange = this.onChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+
+	// On input changes
+	onChange() {
 		const email = this.refs.email.value;
 		const password = this.refs.password.value;
+		
+		this.setState({
+			email,
+			password
+		});
+	}
+
+	// Handle email login
+	onSubmit() {
+
+		const email = this.state.email;
+		const password = this.state.password;
 
 		this.props.adminLogin(email, password);
 	}
@@ -19,11 +42,15 @@ class AdminLogin extends Component {
 	render() {
 		return(
 				<div className="page-container row">
-					<form className="login-form form-group">
+					<form className="login-form form-group" onSubmit={ this.onSubmit }>
 						<label>Please login to post and edit content :)</label>
-						<input className="form-control" ref="email" placeholder="Email" type="email" />
-						<input className="form-control" ref="password" placeholder="Password" type="password" />
-						<button className="btn btn-primary form-control" type="button" onClick={ () => this.handleLogin() } >Login</button>
+						<input className="form-control" ref="email" placeholder="Email" type="text"
+							onChange={ this.onChange } />
+
+						<input className="form-control" ref="password" placeholder="Password" type="password"
+							onChange={ this.onChange } />
+
+						<button className="btn btn-primary form-control" type="button" onClick={ () => this.onSubmit() } >Login</button>
 					</form>
 				</div>
 			);
