@@ -61,7 +61,7 @@ class Nav extends Component {
 			           		</li>
 
 			           		<li>
-					            <Link to="/dashboard">
+					            <Link to="/dashboard" onClick={ () => this.hideNav() }>
 					              	<i className={dashBtn} ></i>
 					            </Link>
 			           		</li>

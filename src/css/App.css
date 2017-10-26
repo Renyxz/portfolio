@@ -6,6 +6,22 @@
 Theme color: #311B92, #7C4DFF;
 */
 
+
+/* Scroll bar */
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+ 
+body::-webkit-scrollbar-track {
+	background: none;
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #BDBDBD;
+}
+
+
+
 /* Links */
 a {
 	color: #311B92;
@@ -369,6 +385,11 @@ li {
 	margin-top: 1rem;
 }
 
+.project-wrapper p {
+	word-wrap: normal;
+}
+
+
 .project-detail-wrapper,
 .project-video-wrapper {
 	width: 50%;
@@ -406,6 +427,7 @@ li {
 	/* Dashboard buttons */
 	.dash-buttons-container {
 		flex-direction: column;
+		margin-top: 5%;
 	}
 
 	.dash-buttons-container a {
@@ -516,6 +538,18 @@ li {
 	/* ProjectList */
 	.center {
 		width: 500px;
+	}
+
+
+	/* Create & Update post form */
+	.input-techs-container {
+		flex-direction: column !important;
+		margin-bottom: 7rem;
+	}
+
+	.cp-form-left,
+	.cp-form-right {
+		width: 100%;
 	}
 
 }

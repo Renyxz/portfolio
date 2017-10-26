@@ -287,6 +287,7 @@ export function logout() {
 			window.localStorage.removeItem('user');
 
 			window.location.reload();
+
 		});
 
 		promise.catch((error) => {
