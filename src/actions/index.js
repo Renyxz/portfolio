@@ -136,6 +136,9 @@ export function fetchContent(category) {
 
 			dispatch(fetchContentAction(content));
 
+			// Hide nav 
+			const nav = document.getElementById('nav');
+			nav.style.height = '0%';
 		});
 	}
 }

@@ -9,6 +9,20 @@ import logo from '../img/Banana.png';
 class Nav extends Component {
 
 
+	showNav() {
+		const nav = document.getElementById('nav');
+		nav.style.height = '100%';
+	}
+
+	hideNav() {
+		const nav = document.getElementById('nav');
+		nav.style.height = '0%';
+	}
+
+
+
+
+
 	render() {
     const user = window.localStorage.getItem('user');
 
@@ -18,28 +32,48 @@ class Nav extends Component {
 
 		return(
 		        <div className="nav-wrapper">
-		           <ul>
-			            <Link to="/">
-			              	<img src={logo} alt="Home" width="60" />
-			            </Link>
-			                
-			            <Link to="/ongoing" onClick={ () => this.props.fetchContent('/ongoing') }>
-			            	Ongoing projects
-			            </Link>
-			                
-			            <Link to="/past" onClick={ () => this.props.fetchContent('/past') }>
-			            	Past projects
-			            </Link>
+		           <span className="menu-btn" onClick={ () => this.showNav() }>
+		           		<i className="fa fa-reorder"></i>
+		           	</span>
 
-			                
-			            <Link to="/dashboard">
-			              	<i className={dashBtn} ></i>
-			            </Link>
-			                
-			            <Link to="/" onClick={ () => this.props.logout() }>
-			              	<i className={logoutBtn} title="Logout"></i>
-			            </Link>
-		           </ul>
+		           <div className="nav-list" id="nav">
+			           	<span className="menu-close-btn" onClick={ () => this.hideNav() }>
+			           		&times;
+			           	</span>	
+		           		
+			           <ul className="nav-content">
+			           		<li>
+					            <Link to="/" onClick={ () => this.hideNav() }>
+					              	<img src={logo} alt="Home" />
+					            </Link>
+			           		</li>	
+
+			           		<li>
+					            <Link to="/ongoing" onClick={ () => this.props.fetchContent('/ongoing') }>
+					            	Ongoing projects
+					            </Link>
+			           		</li>
+
+			           		<li>
+					            <Link to="/past" onClick={ () => this.props.fetchContent('/past') }>
+					            	Past projects
+					            </Link>
+			           		</li>
+
+			           		<li>
+					            <Link to="/dashboard">
+					              	<i className={dashBtn} ></i>
+					            </Link>
+			           		</li>
+			           		
+			           		<li>
+					            <Link to="/" onClick={ () => this.props.logout() }>
+					              	<i className={logoutBtn} title="Logout"></i>
+					            </Link>
+			           		</li>
+			           </ul>
+		           </div>
+
 		        </div>
 			);
 	}
