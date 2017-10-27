@@ -23,19 +23,8 @@ const ACCESS_TOKEN = '74eb689aa6d4443d86288a088163e6bd';
 const client = new ApiAiClient({accessToken: ACCESS_TOKEN});
 
 // Api.ai payload constables
-export const USER_MSG = 'user_msg';
 export const BOT_MSG = 'bot_msg';
 
-
-
-
-// // Messages from user
-// export function userChatAction(userMsg) {
-// 	return {
-// 		type: USER_MSG,
-// 		payload: userMsg
-// 	};
-// }
 
 // Messages from bot
 export function botChatAction(botMsg) {
@@ -58,9 +47,8 @@ export function sendMsg(userMsg) {
 
 	    	// Dispatch user & bot messages to their action creators
 	    	dispatch(botChatAction(botMsg));
-	    	// dispatch(userChatAction(userMsg));
 
-	    	console.log(botMsg);	
+	    	// console.log(botMsg);	
 	    });
 	    
 	    // Fail
@@ -117,8 +105,6 @@ export function fetchContent(category) {
 				return (category === '/ongoing') ? ongoing 
 				: (category === '/past') ? past
 				: post;
-				// const variable = (date === 'ongoing') ? `Ongoing: ${post}` : `Past: ${post}`;
-				// console.log(variable);
 			});
 
 			// console.log(list);
@@ -181,6 +167,8 @@ export function postContent(projectName, projectDate, demoURL, ytURL, githubURL,
 		
 		// Success
 		promise.then(() => {
+			alert('A new post has been created!');
+
 			// Back to dashboard
 			window.location.reload();
 			history.push('/dashboard');
@@ -263,7 +251,6 @@ export function adminLogin(email, password) {
 			const userName = result.email;
 			alert(`Welcome back, ${userName}!`);
 
-			// console.log(result);
 			window.localStorage.setItem('user', userName);
 
 			window.location.reload();

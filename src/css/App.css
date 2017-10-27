@@ -362,6 +362,11 @@ li {
 	padding: 2rem;
 }
 
+.post-title-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .post-edit-wrapper {
 	float: right;
 }

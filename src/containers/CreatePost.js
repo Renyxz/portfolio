@@ -38,7 +38,7 @@ class CreatePost extends Component {
 			projectId
 		});
 
-		console.log(pathName, projectId);
+		// console.log(pathName, projectId);
 	}
 
 

@@ -57,22 +57,29 @@ class ProjectList extends Component {
 		// Render project list
 		const pathName = this.props.history.location.pathname;
 		const dateClassName = (pathName === '/ongoing') ? 'hide' : '';
+		const postEdit = (pathName === '/dashboard/posts') ? 'post-edit-wrapper' : 'hide';
 
+		// Project list
 		const projectList = content.map((project, id) => {
 			const projectName = project.projectName;
 			const projectDate = project.projectDate;
 			const projectId = project.projectId;
-			return (pathName === '/dashboard/posts') ? 
 
-			// If location @ dashboard post list
-			(
+			// Post link at different pathnames
+			const postLink = (pathName === '/dashboard/posts' && projectDate === 'ongoing') ? `/ongoing/${id}` 
+								: (pathName === '/dashboard/posts' && projectDate !== 'ongoing') ? `/past/${id}` 
+								: `${pathName}/${id}`;
+			
+			return (
 				<li key={ projectName }>
-					<div className="d-flex flex-row">
-						<h5 className="mr-5">{ projectName }</h5>
+					<div className="post-title-wrapper">
+						<Link to={ postLink }>
+							<h5 className="mr-5">{ projectName }</h5>
+						</Link>
 						<label className={ dateClassName }>[ { projectDate } ]</label>
 					</div>
-
-					<div className="post-edit-wrapper">
+					
+					<div className={ postEdit }>
 						<Link to={`/dashboard/edit-post/${projectId}`}>
 							<i className="fa fa-edit"></i>
 						</Link>
@@ -82,18 +89,6 @@ class ProjectList extends Component {
 						</Link>
 					</div>					
 				</li>
-				)
-
-			// If location @ ongoing / past projects
-			: (
-				<li key={ projectName }>
-					<Link to={`${pathName}/${id}`} className="d-flex flex-row">
-						<div className="d-flex flex-row">
-							<h5 className="mr-5">{ projectName }</h5>
-							<label className={ dateClassName }>[ { projectDate } ]</label>
-						</div>
-					</Link>
-				</li>
 				);
 		});
 		
@@ -101,12 +96,12 @@ class ProjectList extends Component {
 		// Change layout according to number of projects available
 		let className;
 
-		// If projects > 10
+		// If projects < 4
 		(content.length < 4) ? className = 'list-wrapper center' 
 		: className = 'list-wrapper';
 
 
-		// console.log(projectList);
+		// Return the project list
 		return(
 				<ul className={ className }>
 					{ projectList }
