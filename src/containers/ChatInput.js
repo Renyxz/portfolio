@@ -31,6 +31,11 @@ class ChatInput extends Component {
 		// Fetch message input from state
 		const userMsg = this.state.input;
 
+		// Empty input
+		if (userMsg === '') {
+			return;
+		}
+
 		// Pass in message input
 		this.props.sendMsg(userMsg);
 

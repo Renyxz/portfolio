@@ -39,8 +39,6 @@ class ProjectList extends Component {
 	renderProjectList() {
 		const content = this.props.content;
 
-		// console.log(content);
-
 		// If content is undefined / null
 		if(!content || content.length === 0) {
 			return(
@@ -56,7 +54,7 @@ class ProjectList extends Component {
 
 		// Render project list
 		const pathName = this.props.history.location.pathname;
-		const dateClassName = (pathName === '/ongoing') ? 'hide' : '';
+		// const dateClassName = (pathName === '/ongoing') ? 'hide' : '';
 		const postEdit = (pathName === '/dashboard/posts') ? 'post-edit-wrapper' : 'hide';
 
 		// Project list
@@ -72,11 +70,12 @@ class ProjectList extends Component {
 			
 			return (
 				<li key={ projectName }>
+					{/* <img src={project.thumbnail} alt={ projectName } /> */}
+
 					<div className="post-title-wrapper">
 						<Link to={ postLink }>
-							<h5 className="mr-5">{ projectName }</h5>
+							<h5>{ projectName }</h5>
 						</Link>
-						<label className={ dateClassName }>[ { projectDate } ]</label>
 					</div>
 					
 					<div className={ postEdit }>

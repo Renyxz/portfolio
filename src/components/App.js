@@ -26,6 +26,7 @@ class App extends Component {
     const user = window.localStorage.getItem('user');
     const adminBtn = (!user) ? 'admin-btn' : 'hide';
 
+    
     return (
       <div className="container-fluid">
         
@@ -37,6 +38,10 @@ class App extends Component {
               <ul className="social-media float-right d-flex flex-row">
                 <a href="https://github.com/Renyxz" target="_blank" rel="noopener noreferrer">
                   <i className="fa fa-github"></i>
+                </a>
+                
+                <a href="https://codepen.io/Renyxz/" target="_blank" rel="noopener noreferrer">
+                  <i className="fa fa-codepen"></i>
                 </a>
 
                 <a href="https://twitter.com/RenyxzDev" target="_blank" rel="noopener noreferrer">
@@ -59,10 +64,13 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/admin-login" component={AdminLogin} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/dashboard/create-post" component={CreatePost} />
-          <Route exact path="/dashboard/posts" component={ProjectList} />
-          <Route exact path="/dashboard/edit-post/:projectId" component={CreatePost} />
+
+            {/* TODO: establish private routes */}
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dashboard/create-post" component={CreatePost} />
+            <Route exact path="/dashboard/posts" component={ProjectList} />
+            <Route exact path="/dashboard/edit-post/:projectId" component={CreatePost} />
+           
           <Route exact path="/ongoing" component={ProjectList} />
           <Route exact path="/past" component={ProjectList} />
           <Route exact path="/:pathName/:id" component={BrowsePosts} />

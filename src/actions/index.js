@@ -134,31 +134,20 @@ export function fetchContent(category) {
 
 
 // Write to database
-export function postContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description) {
+export function postContent(postData) {
 	const uid = auth.currentUser.uid;
 
 	// Write to 'content' -> 'key'
 	const newPostKey = database.ref().push().key;
 
-	// Post data
-	const postData = {
-			projectName,
-			projectDate,
-			projectId: newPostKey,
-			demoURL,
-			ytURL,
-			githubURL,
-			techs,
-			description
-		};
-
-
+	// Add post key to post data
+	const post = Object.assign({}, postData, { projectId: newPostKey });
 	
 	// Write post date to post list & user post list
 	let updates = {};
 
-		updates[`content/${newPostKey}`] = postData;
-		updates[`${uid}/content/${newPostKey}`] = postData;
+		updates[`content/${newPostKey}`] = post;
+		updates[`${uid}/content/${newPostKey}`] = post;
 
 
 	return dispatch => {
@@ -184,7 +173,7 @@ export function postContent(projectName, projectDate, demoURL, ytURL, githubURL,
 
 
 // Update content
-export function updateContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description, projectId) {
+export function updateContent(postData, projectId) {
 	const uid = auth.currentUser.uid;
 	const promiseUser = database.ref(`${uid}/content/${projectId}`);
 	const promisePublic = database.ref(`content/${projectId}`);
@@ -242,7 +231,7 @@ export function deletePost(projectId) {
 
 
 // Admin
-// Google sign in
+// Email sign in with firebase
 export function adminLogin(email, password) {
 	const promise = auth.signInWithEmailAndPassword(email, password);
 
@@ -255,6 +244,7 @@ export function adminLogin(email, password) {
 
 			window.location.reload();
 			history.push('/dashboard');
+
 		});
 
 		promise.catch((error) => {
@@ -262,6 +252,8 @@ export function adminLogin(email, password) {
 		});
 	}
 }
+
+
 
 
 // Logout

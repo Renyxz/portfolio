@@ -19,6 +19,7 @@ class CreatePost extends Component {
 			description: '',
 			techs: [],
 			pathName: '',
+			thumbnail: '',
 			projectId: ''
 		}
 		this.addTech = this.addTech.bind(this);
@@ -55,15 +56,27 @@ class CreatePost extends Component {
 		const githubURL = this.state.githubURL;
 		const techs = this.state.techs;
 		const description = this.state.description;
+		const thumbnail = this.state.thumbnail;
+
+		const postData = {
+			projectName, 
+			projectDate, 
+			demoURL, 
+			ytURL, 
+			githubURL, 
+			techs, 
+			description,
+			thumbnail
+		};
 
 		// submit data to firebase database
 		if (pathName === '/dashboard/create-post') {
 			// Create new post
-			this.props.postContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description);
+			this.props.postContent(postData);
 
 		} else {
 			// Update selected post
-			this.props.updateContent(projectName, projectDate, demoURL, ytURL, githubURL, techs, description, projectId);
+			this.props.updateContent(postData, projectId);
 			// console.log(projectName);
 		}
 
@@ -78,6 +91,7 @@ class CreatePost extends Component {
 		const ytURL = this.refs.ytURL.value;
 		const githubURL = this.refs.githubURL.value;
 		const description = this.refs.description.value;
+		const thumbnail = this.refs.thumbnail.value;
 
 		this.setState({
 			name, 
@@ -85,7 +99,8 @@ class CreatePost extends Component {
 			demoURL,
 			ytURL,
 			githubURL,
-			description
+			description,
+			thumbnail
 		});
 	}
 
