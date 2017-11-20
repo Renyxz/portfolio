@@ -7,7 +7,6 @@ import BrowsePosts from './BrowsePosts';
 import AdminLogin from './AdminLogin';
 import Dashboard from './Dashboard';
 import CreatePost from '../containers/CreatePost';
-import adminLogo from '../img/admin-banana.png';
 
 
 
@@ -79,7 +78,7 @@ class App extends Component {
             </small>
 
             <Link to="/admin-login" className={adminBtn} >
-              <img src={adminLogo} alt="Admin login portal" title="Admin login portal" width="30" />
+              <i className="fa fa-circle" alt="Admin login portal" title="Admin portal" width="30" />
             </Link>
           </div>
         </div>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout, fetchContent } from '../actions';
-import logo from '../img/Banana.png';
 
 
 
@@ -43,8 +42,8 @@ class Nav extends Component {
 		           		
 			           <ul className="nav-content">
 			           		<li>
-					            <Link to="/" onClick={ () => this.hideNav() }>
-					              	<img src={logo} alt="Home" />
+					            <Link to="/" className="logo" onClick={ () => this.hideNav() }>
+					              	REN
 					            </Link>
 			           		</li>	
 

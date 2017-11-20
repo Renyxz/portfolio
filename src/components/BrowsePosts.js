@@ -88,7 +88,7 @@ class BrowsePosts extends Component {
 					<div className="embed-responsive embed-responsive-16by9">
 						<iframe className="embed-responsive-item" 
 							src={ post.ytURL } title={ post.projectName }
-							frameBorder="0" allowFullScreen></iframe>
+							frameBorder="0" allowFullScreen>None</iframe>
 					</div>
 				</div>
 
