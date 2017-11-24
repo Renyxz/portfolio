@@ -80,47 +80,57 @@ export function fetchContentAction(content) {
 // Dispatch data from firebase database
 
 // Content
-export function fetchContent(category) {
+export function fetchContent(category, projectId) {
 	// Fetch data
 	const promise = database.ref('content').once('value');
 	
 	return dispatch => {
 		promise.then((snapshot) => {
 			const data = snapshot.val();
-			
+			let content;
+
 			// If no data is available
 			if(!data) {
 				return null;
 			}
 
 
-			// Filter data for Ongoing posts
-			const list = Object.keys(data).map((project) => {
-				const post = data[project];
-				const date = post.projectDate;
-				let ongoing, past;
-
-				(date === 'ongoing') ? ongoing = post : past = post;
-
-				return (category === '/ongoing') ? ongoing 
-				: (category === '/past') ? past
-				: post;
-			});
-
-			// console.log(list);
-
-			// Create a new array of objects without undefined projects
-			let content = [];
-			for(let i = 0; i < list.length; i++) {
-				if(list[i] === undefined) {
-					continue;
+			// If category is null
+			if(!category) {
+				
+				content = data;
+				
+			} else {
+				// Filter data for Ongoing posts
+				const list = Object.keys(data).map((project) => {
+					const post = data[project];
+					const date = post.projectDate;
+					let ongoing, past;
+	
+					(date === 'ongoing') ? ongoing = post : past = post;
+	
+					return (category === '/ongoing') ? ongoing 
+					: (category === '/past') ? past
+					: post;
+				});
+	
+				// console.log(list);
+	
+				// Create a new array of objects without undefined projects
+				content = [];
+				for(let i = 0; i < list.length; i++) {
+					if(list[i] === undefined) {
+						continue;
+					}
+					content.push(list[i]);
 				}
-				content.push(list[i]);
 			}
+			
+			
+			dispatch(fetchContentAction(content));
 
 			// console.log(content);
 
-			dispatch(fetchContentAction(content));
 
 		});
 			
@@ -179,23 +189,23 @@ export function updateContent(postData, projectId) {
 	const promisePublic = database.ref(`content/${projectId}`);
 
 	return dispatch => {
-		const array = ['projectName', 'projectDate', 'demoURL', 'ytURL', 'githubURL', 'techs', 'description'];
-		let postData = {};
-
-		for(let i = 0; i < array.length; i++) {
-			if(arguments[i] !== '' || arguments[i].length > 0) {
-				postData[ array[i] ] = arguments[i];
+		let data = {};
+		
+		Object.keys(postData).forEach( key => {
+			const input = postData[key];
+			if(input !== '' && input.length !== 0) {
+				data[ key ] = input;
 			}
-		}
 
-		promiseUser.update(postData).then(() => {
+		});
+
+		promiseUser.update(data).then(() => {
 			window.location.reload();
 			history.push('/dashboard/posts');
 		});
 
-		promisePublic.update(postData);
-		
-		// console.log(postData);
+		promisePublic.update(data);
+
 	}
 }
 

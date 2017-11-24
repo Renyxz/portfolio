@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postContent } from '../actions';
+import { updateContent } from '../actions';
 
 
 
@@ -37,12 +37,13 @@ class CreatePost extends Component {
 			projectId
 		});
 
-		// console.log(pathName, projectId);
+		// console.log();
 	}
 
 
 	// Submit form data
 	onSubmit() {
+		const projectId = this.state.projectId;
 
 		// Fetch data from states
 		const projectName = this.state.name;
@@ -64,9 +65,9 @@ class CreatePost extends Component {
 			description,
 			thumbnail
 		};
-
-		// submit data to firebase database
-		this.props.postContent(postData);
+		
+		// Update selected post
+		this.props.updateContent(postData, projectId);
 
 	}
 
@@ -192,8 +193,9 @@ class CreatePost extends Component {
 
 								<div className="post-btns-wrapper">
 									<div className="float-right">
+
 										<button type="button"
-											onClick={ this.onSubmit }>Create post</button>
+											onClick={ this.onSubmit }>Update post</button>
 										
 										<Link className="cancel-btn" to="/dashboard">Cancel</Link>
 									</div>
@@ -213,4 +215,4 @@ function mapStateToProps({ categories }) {
 }
 
 
-export default connect(mapStateToProps, { postContent })(CreatePost);
+export default connect(mapStateToProps, { updateContent })(CreatePost);

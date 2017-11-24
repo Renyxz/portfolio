@@ -307,8 +307,8 @@ li {
 
 
 
-/* Create post area */
-.create-post-form {
+/* Create & Edit Post area */
+.post-form {
 	width: 100%;
 }
 
@@ -352,11 +352,11 @@ li {
 	resize: none;
 }
 
-.create-post-btns-wrapper {
+.post-btns-wrapper {
 	margin-top: 3rem;
 }
 
-.create-post-btns-wrapper button {
+.post-btns-wrapper button {
 	margin-right: 1rem;
 	padding: 0.4rem 1rem;
 	background: none;
@@ -365,7 +365,7 @@ li {
 	color: #311B92;
 }
 
-.create-post-btns-wrapper button:hover {
+.post-btns-wrapper button:hover {
 	background: #7C4DFF;
 	color: #FFF;
 	border-color: #7C4DFF;

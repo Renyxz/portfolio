@@ -7,8 +7,9 @@ import BrowsePosts from './BrowsePosts';
 import AdminLogin from './AdminLogin';
 import Dashboard from './Dashboard';
 import CreatePost from '../containers/CreatePost';
+import EditPost from '../containers/EditPost';
 
-
+// My current portfolio website. It's actually a minimalist blogging app which allows creating and editing posts.
 
 class App extends Component {
 
@@ -69,7 +70,7 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/dashboard/create-post" component={CreatePost} />
             <Route exact path="/dashboard/posts" component={ProjectList} />
-            <Route exact path="/dashboard/edit-post/:projectId" component={CreatePost} />
+            <Route exact path="/dashboard/edit-post/:projectId" component={EditPost} />
            
           <Route exact path="/ongoing" component={ProjectList} />
           <Route exact path="/past" component={ProjectList} />

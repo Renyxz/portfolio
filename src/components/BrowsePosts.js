@@ -74,11 +74,11 @@ class BrowsePosts extends Component {
 					</div>
 
 					<div className="project-links-wrapper">
-						<a href={ post.demoURL }>
+						<a href={ post.demoURL } target="_blank">
 							<i className="fa fa-play"></i> Demo
 						</a>
 
-						<a href={ post.githubURL }>
+						<a href={ post.githubURL } target="_blank">
 							<i className="fa fa-github"></i> Github repo
 						</a>
 					</div>
